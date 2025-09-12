@@ -18,9 +18,6 @@ ports:
 ports_description:
   "3000/tcp": "Forgejo Web Interface"
   "22/tcp": "Forgejo SSH Git Access"
-map:
-  - "3000:3000"
-  - "22:22"
 options:
   domain: "localhost"
   http_port: 3000
