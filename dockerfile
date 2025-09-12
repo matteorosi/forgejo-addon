@@ -19,7 +19,7 @@ RUN case "$(uname -m)" in \
         i386) ARCH=386 ;; \
         *) echo "Unsupported architecture"; exit 1 ;; \
     esac \
-    && wget -O /usr/local/bin/forgejo \
+    && curl -fsSL -o /usr/local/bin/forgejo \
         "https://codeberg.org/forgejo/forgejo/releases/download/v${FORGEJO_VERSION}/forgejo-${FORGEJO_VERSION}-linux-${ARCH}" \
     && chmod +x /usr/local/bin/forgejo
 
