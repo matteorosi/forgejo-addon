@@ -1,22 +1,17 @@
 #!/usr/bin/with-contenv bashio
 
 set -e
-set -x  # log dettagliato
+set -x  # log dettagliato per debug
 
-# Legge configurazione da config.yaml
+# Legge configurazione
 DOMAIN=$(bashio::config 'domain')
 HTTP_PORT=$(bashio::config 'http_port')
 SSH_PORT=$(bashio::config 'ssh_port')
 
-echo "Starting Forgejo with domain: $DOMAIN"
-echo "HTTP Port: $HTTP_PORT"
-echo "SSH Port: $SSH_PORT"
+echo "Starting Forgejo with domain: $DOMAIN, HTTP: $HTTP_PORT, SSH: $SSH_PORT"
 
-# Crea directory necessarie
+# Crea directory se non esistono
 mkdir -p /data/custom/conf /data/repositories /data/log
-
-# Controlla permessi
-chown -R git:git /data
 
 # Genera app.ini se non esiste
 if [ ! -f /data/custom/conf/app.ini ]; then
@@ -53,12 +48,6 @@ ROOT_PATH = /data/log
 EOF
 fi
 
-# Debug: lista directory e permessi
-echo "Listing /data:"
-ls -l /data
-echo "Listing /data/custom/conf:"
-ls -l /data/custom/conf
-
-# Avvio Forgejo in foreground
-echo "Starting Forgejo..."
+# Avvio Forgejo (l’immagine ufficiale gestisce già utente e permessi)
+echo "Launching Forgejo..."
 /usr/local/bin/forgejo web --config /data/custom/conf/app.ini
