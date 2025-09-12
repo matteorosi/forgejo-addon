@@ -3,6 +3,7 @@ version: "12.0.3"
 slug: "forgejo"
 description: "A lightweight self-hosted Git service"
 url: "https://forgejo.org/"
+image: "local/forgejo-{arch}"
 arch:
   - armhf
   - armv7
