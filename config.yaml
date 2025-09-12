@@ -3,10 +3,9 @@ version: "12.0.3"
 slug: "forgejo"
 description: "A lightweight self-hosted Git service"
 url: "https://forgejo.org/"
-image: "local/forgejo-{arch}"
+image: "local/forgejo-amd64"
 arch:
   - amd64
-  - aarch64
 startup: application
 boot: auto
 init: false
